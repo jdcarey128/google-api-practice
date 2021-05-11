@@ -15,4 +15,12 @@ describe 'Welcome Page' do
     expect(current_path).to eq(dashboard_path)
     expect(page).to have_content('Dashboard')
   end
+
+  it 'redirects you to dashboard once logged in' do
+    click_link 'Log in with Google'
+    expect(current_path).to eq(dashboard_path)
+    visit root_path
+    expect(current_path).to eq(dashboard_path)
+    expect(page).to have_content('You are already logged in')
+  end
 end

@@ -1,5 +1,8 @@
 class DashboardController < ApplicationController
+  before_action :require_login
 
-  def show; end
+  def show
+    @user = current_user
+  end
   
 end
