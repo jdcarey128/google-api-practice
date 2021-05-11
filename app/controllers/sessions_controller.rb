@@ -9,4 +9,10 @@ class SessionsController < ApplicationController
     
     redirect_to dashboard_path
   end
+
+  def destroy 
+    # delete session data 
+    reset_session()
+    redirect_to root_path
+  end
 end
