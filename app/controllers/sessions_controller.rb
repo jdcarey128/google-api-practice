@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
 
   def GoogleAuth
-    require 'pry'; binding.pry
-    access_token = request.env['omniauth.auth']
-    # use access token info to find user 
-    # add user info to session data 
-    # save google token
+    omniauth_data = request.env['omniauth.auth']
+    user = User.from_google_omniauth(omniauth_data)
+
+    session[:user_id] = user.id
+    session[:token] = omniauth_data[:credentials][:token]
+    
     redirect_to dashboard_path
   end
 end
