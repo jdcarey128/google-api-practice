@@ -4,5 +4,10 @@ class DashboardController < ApplicationController
   def show
     @user = current_user
   end
+
+  def get_data
+    token = session[:token]
+    DataService.get_data(token)
+  end
   
 end

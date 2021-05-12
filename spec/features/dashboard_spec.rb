@@ -20,6 +20,13 @@ describe 'Dashboard', type: :feature do
       name = stub_omniauth['info']['first_name']
       expect(page).to have_content("Hello, #{name}!")
     end
+
+    it 'displays the user\'s sheet data' do 
+      click_link 'Get data' 
+      expect(current_path).to eq(data_path)
+      expect(page).to have_content('data')
+      expect(page).to have_content('description')
+    end
   end
 
   describe 'when not logged in with Google Oauth' do 
