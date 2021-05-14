@@ -7,7 +7,8 @@ class DashboardController < ApplicationController
 
   def get_data
     token = session[:token]
-    DataService.get_data(token)
+    @data = DataService.get_data(token)
+    @values = @data.values
   end
   
 end

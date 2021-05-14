@@ -4,6 +4,7 @@ describe 'Dashboard', type: :feature do
   describe 'when logged in with Google Oauth' do 
     before :each do 
       stub_omniauth
+      @token = ENV['SUPER_SECRET_TOKEN']
       visit root_path 
       click_link 'Log in with Google'
     end
@@ -22,10 +23,20 @@ describe 'Dashboard', type: :feature do
     end
 
     it 'displays the user\'s sheet data' do 
+      response_data = JSON.parse(File.read('spec/fixtures/sheet_data.json'), symbolize_names: true)
+      
+      allow(DataService).to receive(:get_data).with(@token).and_return(response_data)
+      
       click_link 'Get data' 
+      
       expect(current_path).to eq(data_path)
       expect(page).to have_content('data')
+      expect(page).to have_content('id')
       expect(page).to have_content('description')
+      expect(page).to have_content('unit_price')
+      expect(page).to have_content('merchant_id')
+      expect(page).to have_content('created_at')
+      expect(page).to have_content('updated_at')
     end
   end
 
