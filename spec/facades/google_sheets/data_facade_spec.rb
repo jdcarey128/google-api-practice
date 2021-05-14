@@ -18,7 +18,7 @@ describe 'Google Sheets Data Facade' do
       first_result = result[0]
       
       expect(first_result).to be_a(OpenStruct)
-      expect(first_result.school).to eq('school 1')
+      expect(first_result.school).to eq('school-1')
 
       values = first_result.values
       expect(values).to be_a(Array)

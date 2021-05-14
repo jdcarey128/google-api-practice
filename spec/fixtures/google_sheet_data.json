@@ -1,7 +1,7 @@
 { "results":
   [
     {
-      "school": "school 1",
+      "school": "school-1",
       "values":
       [
         [
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "school": "school 2",
+      "school": "school-2",
       "values": [
         [
           "id", "name", "description", "unit_price", "merchant_id", "created_at", "updated_at"
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "school": "school 3",
+      "school": "school-3",
       "values": [
         [
           "id", "name", "description", "unit_price", "merchant_id", "created_at", "updated_at"
