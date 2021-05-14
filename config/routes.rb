@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy'
 
   get '/dashboard', to: 'dashboard#show'
-  get '/data', to: 'dashboard#get_data'
+
+  namespace :google_sheets do
+    resources :data, only: [:index]
+  end 
   
 end
