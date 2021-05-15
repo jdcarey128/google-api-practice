@@ -5,7 +5,7 @@ describe 'Google Sheets Index' do
     before :each do 
       stub_omniauth
       visit root_path 
-      click_link 'Log in with Google'
+      click_link'Log in with Google'
       @token = ENV['SUPER_SECRET_TOKEN']
     end
 
@@ -13,11 +13,10 @@ describe 'Google Sheets Index' do
       response_data = JSON.parse(File.read('spec/fixtures/google_sheet_data.json'), symbolize_names: true)
       # this creates the open struct object that occurs in data service
       open_struct_data = create_open_struct(response_data[:results])
-      allow(GoogleSheets::DataService).to receive(:fetch_sheet_data).with(@token).and_return(open_struct_data)
+      allow(GoogleSheets::DataService).to receive(:fetch_sheet_data).with(@token, 10).and_return(open_struct_data)
       
-      click_link 'Fetch Google Sheet Data' 
+      click_on 'Fetch Google Sheet Data' 
       
-      save_and_open_page
       expect(current_path).to eq(google_sheets_data_path)
       expect(page).to have_content('data')
       expect(page).to have_content('id')

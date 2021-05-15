@@ -7,5 +7,9 @@
 </div>
 
 <div>
-<%= link_to('Fetch Google Sheet Data', google_sheets_data_path) %>
+  <%= form_with url: google_sheets_data_path, local: true, method: :get do |form| %>
+    <%= form.label :record_count, 'How many records per school would you like to display?' %>
+    <%= form.number_field :record_count, in: 1.0..50.0, step: 1.0 %>
+    <%= form.submit 'Fetch Google Sheet Data' %>
+  <% end %>
 </div>
