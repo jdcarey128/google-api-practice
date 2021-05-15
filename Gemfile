@@ -35,7 +35,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'omniauth-google-oauth2'
+gem 'google-api-client'
 gem 'figaro'
+gem 'google_drive'
+gem 'actionpack-action_caching'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,6 +50,7 @@ group :development, :test do
   gem 'capybara'
   gem 'faker'
   gem 'factory_bot_rails'
+  gem 'launchy'
 end
 
 group :development do

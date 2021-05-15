@@ -74,3 +74,8 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+# helper methods 
+def create_open_struct(sheets_data)
+  sheets_data.map {|sheet| OpenStruct.new(sheet)}
+end
