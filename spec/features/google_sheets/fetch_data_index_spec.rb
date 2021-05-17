@@ -19,20 +19,23 @@ describe 'Google Sheets Index' do
       
       expect(current_path).to eq(google_sheets_data_path)
       expect(page).to have_content('data')
-      expect(page).to have_content('id')
-      expect(page).to have_content('description')
-      expect(page).to have_content('unit_price')
-      expect(page).to have_content('merchant_id')
-      expect(page).to have_content('created_at')
-      expect(page).to have_content('updated_at')
+      expect(page).to have_content('ID')
+      expect(page).to have_content('Description')
+      expect(page).to have_content('Unit Price')
+      expect(page).to have_content('Merchant ID')
+      expect(page).to have_content('Created At')
 
+      within (".summary") do 
+        expect(page).to have_content("$37,379.67")
+      end
+      
       # specific data from fixture[0]
-      within ("#school-1") do 
+      within (".items") do 
+        expect(page).to have_content("school-1")
         expect(page).to have_content("4")
         expect(page).to have_content("Sunt eum id eius magni consequuntur delectus veritatis. Quisquam laborum illo ut ab. Ducimus in est id voluptas autem.")
         expect(page).to have_content("4291")
         expect(page).to have_content("1")
-        expect(page).to have_content("2012-03-27 14:53:59")
       end
     end
   end
