@@ -18,7 +18,12 @@ RSpec.describe Item, type: :model do
       
       it 'should create items from sheets' do 
         expect(Item.count).to eq(0)
-        Item.items_from_sheets(@items)
+        items = Item.items_from_sheets(@items)
+
+        expect(items).to be_a(Array)
+        expect(items[0]).to be_a(Array)
+        expect(items[0][0]).to be_a(Item)
+        
         expect(Item.count).to eq(12)
 
         item_5 = Item.find_by(id: 5)
