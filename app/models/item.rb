@@ -1,3 +1,3 @@
 class Item < ApplicationRecord
-  validates :name, :description, :unit_price, :merchant_id, presence: true
+  validates :name, :description, :unit_price, :school, :merchant_id, presence: true
 end
