@@ -9,6 +9,11 @@ RSpec.describe Item, type: :model do
     it { should validate_presence_of :school }
   end
 
+  describe 'relationships' do 
+    it { should have_many(:report_items) }
+    it { should have_many(:reports).through(:report_items) }
+  end
+
   describe 'methods' do 
     describe 'create_items_from_sheets' do 
       before :each do 
@@ -16,13 +21,13 @@ RSpec.describe Item, type: :model do
         @items = create_open_struct(sheet_data[:results])
       end
       
-      it 'should create items from sheets' do 
+      it 'should create items from sheets and return their id' do 
         expect(Item.count).to eq(0)
         items = Item.items_from_sheets(@items)
 
         expect(items).to be_a(Array)
-        expect(items[0]).to be_a(Array)
-        expect(items[0][0]).to be_a(Item)
+        expect(items[0]).to be_a(Integer)
+        expect(items[0]).to eq(4)
         
         expect(Item.count).to eq(12)
 
