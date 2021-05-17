@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Google Sheets Data Facade' do
   describe 'fetch sheet data' do 
-    it 'returns an array of Open Struct data objects' do
+    it 'returns a report object' do
       response_data = JSON.parse(File.read('spec/fixtures/google_sheet_data.json'), symbolize_names: true)[:results]
       token = ENV['SUPER_SECRET_TOKEN']
 
@@ -13,12 +13,10 @@ describe 'Google Sheets Data Facade' do
       
       result = GoogleSheets::DataFacade.fetch_sheet_data(token)
 
-      expect(result).to be_a(Array)
-
-      first_school_set = result[0]
-      values = first_school_set[0]
-
-      expect(values).to be_a(Item)
+      expect(result).to be_a(Report)
+      first_item = result.items[0]
+      expect(first_item).to be_a(Item)
+      expect(first_item.id).to eq(4)
     end
   end
 end

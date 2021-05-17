@@ -3,7 +3,11 @@ module GoogleSheets
     class << self 
       def fetch_sheet_data(token, count=10)
         response = GoogleSheets::DataService.fetch_sheet_data(token, count)
-        items = Item.items_from_sheets(response)
+        # returns array of item ids 
+        item_ids = Item.items_from_sheets(response)
+        # returns created report 
+        # links report to Items through Report Items 
+        Report.generate_report(item_ids)
       end
     end
   end
