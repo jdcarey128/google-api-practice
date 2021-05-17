@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :report do
-    description { "MyText" }
-    average_price { 1.5 }
+    description { Faker::Hipster.sentence }
+    average_price { rand(100..1000) }
   end
 end
