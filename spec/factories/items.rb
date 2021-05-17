@@ -4,5 +4,6 @@ FactoryBot.define do
     description { Faker::Hipster.sentence }
     unit_price { rand(10..100) }
     merchant_id { rand(1..15) }
+    school { Faker::FunnyName.name }
   end
 end
