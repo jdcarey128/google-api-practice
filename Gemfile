@@ -39,6 +39,8 @@ gem 'google-api-client'
 gem 'figaro'
 gem 'google_drive'
 gem 'actionpack-action_caching'
+gem 'pdfkit'
+gem 'render_anywhere', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
