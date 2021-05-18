@@ -1,0 +1,30 @@
+<h1>data</h1>
+<div class="summary">
+  <p><strong>Average Unit Price: </strong><%= number_to_currency(report.average_price.round(2)) %></p>
+</div>
+<div class='items-table'>
+  <table>
+    <thead>
+      <th>ID</th>
+      <th>School Name</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Unit Price</th>
+      <th>Merchant ID</th>
+      <th>Created At</th>
+    </thead>
+    <tbody>
+      <% report.items.each do |item| %>
+        <tr class='item'>
+          <td><%= item.id %></td>
+          <td><%= item.name %></td>
+          <td><%= item.school %></td>
+          <td><%= item.description %></td>
+          <td><%= item.unit_price %></td>
+          <td><%= item.merchant_id %></td>
+          <td><%= item.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
