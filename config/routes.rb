@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#show'
 
   namespace :google_sheets do
-    resources :reports, only: [:index]
+    resources :reports, only: [:index] do 
+      resource :download, only: [:show]
+    end
   end 
   
 end
