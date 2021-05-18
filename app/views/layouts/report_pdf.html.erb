@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <meta name='ROBOTS' content='NOODP'/>
+    <meta name='viewport' contents='initial-scale=1'/>
+    <style>
+      <%= Rails.application.assets.find_asset('report_pdf').to_s %>
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

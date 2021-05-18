@@ -21,6 +21,7 @@ class Download
 
   def as_html 
     render template: "reports/pdf",
+           layout: 'report_pdf',
            locals: { report: report }
   end
 end
