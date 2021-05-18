@@ -1,4 +1,7 @@
 <h1>data</h1>
+<div>
+  <%= link_to 'Return to Dashboard', dashboard_path %>
+</div>
 <div class="summary">
   <p><strong>Average Unit Price: </strong><%= number_to_currency(@report.average_price.round(2)) %></p>
 </div>

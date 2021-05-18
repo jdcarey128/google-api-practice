@@ -1,15 +1,13 @@
 require 'rails_helper'
 
-describe 'Google Sheets Index' do
+describe 'Google Sheets Report' do
   describe 'when logged in with Google Oauth' do 
     before :each do 
       stub_omniauth
       visit root_path 
       click_link'Log in with Google'
       @token = ENV['SUPER_SECRET_TOKEN']
-    end
 
-    it 'displays the user\'s sheet data for a range' do 
       response_data = JSON.parse(File.read('spec/fixtures/google_sheet_data.json'), symbolize_names: true)
       # this creates the open struct object that occurs in data service
       open_struct_data = create_open_struct(response_data[:results])
@@ -18,9 +16,10 @@ describe 'Google Sheets Index' do
       within '.record-count-form' do 
         fill_in :record_count, with: 4
       end
-      
       click_on 'Generate Report' 
-      
+    end
+
+    it 'displays the user\'s sheet data for a range' do 
       expect(current_path).to eq(google_sheets_data_path)
       expect(page).to have_content('data')
       expect(page).to have_content('ID')
@@ -45,6 +44,12 @@ describe 'Google Sheets Index' do
         expect(page).to have_content("1")
         expect(page).to have_selector('.item', count: 12)
       end
+    end
+
+    it 'displays a link to return user to dashboard' do 
+      expect(current_path).to eq(google_sheets_data_path)
+      click_link 'Return to Dashboard' 
+      expect(current_path).to eq(dashboard_path)
     end
   end
 end
