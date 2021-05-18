@@ -11,7 +11,7 @@ describe 'Google Sheets Report' do
       response_data = JSON.parse(File.read('spec/fixtures/google_sheet_data.json'), symbolize_names: true)
       # this creates the open struct object that occurs in data service
       open_struct_data = create_open_struct(response_data[:results])
-      allow(GoogleSheets::DataService).to receive(:fetch_sheet_data).with(@token, 4).and_return(open_struct_data)
+      allow(GoogleSheets::ReportsService).to receive(:fetch_sheet_data).with(@token, 4).and_return(open_struct_data)
       
       within '.record-count-form' do 
         fill_in :record_count, with: 4
@@ -20,7 +20,7 @@ describe 'Google Sheets Report' do
     end
 
     it 'displays the user\'s sheet data for a range' do 
-      expect(current_path).to eq(google_sheets_data_path)
+      expect(current_path).to eq(google_sheets_reports_path)
       expect(page).to have_content('data')
       expect(page).to have_content('ID')
       expect(page).to have_content('School Name')
@@ -47,7 +47,7 @@ describe 'Google Sheets Report' do
     end
 
     it 'displays a link to return user to dashboard' do 
-      expect(current_path).to eq(google_sheets_data_path)
+      expect(current_path).to eq(google_sheets_reports_path)
       click_link 'Return to Dashboard' 
       expect(current_path).to eq(dashboard_path)
     end

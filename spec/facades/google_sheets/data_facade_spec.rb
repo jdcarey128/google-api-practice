@@ -9,9 +9,9 @@ describe 'Google Sheets Data Facade' do
       # helper method found in rails helper
       open_struct_data = create_open_struct(response_data)
 
-      allow(GoogleSheets::DataService).to receive(:fetch_sheet_data).with(token, 10).and_return(open_struct_data)
+      allow(GoogleSheets::ReportsService).to receive(:fetch_sheet_data).with(token, 10).and_return(open_struct_data)
       
-      result = GoogleSheets::DataFacade.fetch_sheet_data(token)
+      result = GoogleSheets::ReportsFacade.fetch_sheet_data(token)
 
       expect(result).to be_a(Report)
       first_item = result.items[0]

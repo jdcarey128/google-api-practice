@@ -1,7 +1,7 @@
 require 'google/apis/sheets_v4'
 
 module GoogleSheets
-  class DataService 
+  class ReportsService 
     class << self 
       def fetch_sheet_data(token, count=10)
         # parse yaml spreadsheet values into ruby array of arrays [['school', 'id'],...]
