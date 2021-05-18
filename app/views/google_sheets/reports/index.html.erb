@@ -1,5 +1,11 @@
 <h1>data</h1>
 <div>
+  <%= link_to 'Download PDF',
+    google_sheets_report_download_path(@report, format: 'pdf'),
+    target: '_blank',
+    class: 'download' %>
+</div>
+<div>
   <%= link_to 'Return to Dashboard', dashboard_path %>
 </div>
 <div class="summary">
