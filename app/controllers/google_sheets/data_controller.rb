@@ -8,7 +8,7 @@ module GoogleSheets
       token = session[:token]
       count = params[:record_count].to_i
       # returns report object with accessible items 
-      @report = GoogleSheets::DataFacade.fetch_sheet_data(token, count=10)
+      @report = GoogleSheets::DataFacade.fetch_sheet_data(token, count)
     end
 
   end
