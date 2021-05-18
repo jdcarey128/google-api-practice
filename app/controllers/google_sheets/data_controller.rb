@@ -2,7 +2,7 @@ module GoogleSheets
   class DataController < ApplicationController
     before_action :require_login
 
-    caches_action :index, expires_in: 0.10.hour
+    caches_action :index, expires_in: 0.5.hour, cache_path: -> { request.params[:record_count] }
 
     def index 
       token = session[:token]
