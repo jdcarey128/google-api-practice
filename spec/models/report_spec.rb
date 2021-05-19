@@ -6,6 +6,7 @@ RSpec.describe Report, type: :model do
   end
 
   describe 'relationships' do 
+    it { should belong_to(:user) }
     it { should have_many(:report_items) }
     it { should have_many(:items).through :report_items }
   end
@@ -17,10 +18,11 @@ RSpec.describe Report, type: :model do
         @items_2 = create_list(:item, 5, school: 'school-2')
         @items_3 = create_list(:item, 5, school: 'school-3')
         @item_ids = [@items.map(&:id), @items_2.map(&:id)].flatten
+        @user = create(:user)
       end
       
       it 'should create a report with the average unit price of all items' do 
-        report = Report.generate_report(@item_ids)
+        report = Report.generate_report(@user.id, @item_ids)
 
         expect(report).to be_a(Report)
         expect(report.items.count).to eq(10)

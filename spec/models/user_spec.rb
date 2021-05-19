@@ -8,6 +8,10 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of :last_name }
   end
 
+  describe 'relationships' do 
+    it { should have_many :reports }
+  end
+
   describe 'methods' do 
     before :each do 
       @omniauth_data = JSON.parse(File.read('spec/fixtures/omniauth_data.json'))
