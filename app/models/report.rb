@@ -15,5 +15,9 @@ class Report < ApplicationRecord
       ReportItem.link_report_items({report_id: report.id, item_ids: item_ids})
       return report 
     end
+
+    def user_reports(user_id)
+      Report.where('user_id = ?', user_id)
+    end
   end
 end

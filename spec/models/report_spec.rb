@@ -29,5 +29,22 @@ RSpec.describe Report, type: :model do
         expect(report.items[0]).to be_a(Item)
       end
     end
+
+    describe 'user_reports(user_id)' do 
+      it 'should return all reports for a user' do 
+        user = create(:user)
+        report_1 = create(:report, user: user)
+        report_2 = create(:report, user: user)
+
+        # report that does not belong to user 
+        report_3 = create(:report)
+
+        user_reports = Report.user_reports(user.id)
+        expect(user_reports.count).to eq(2)
+        expect(user_reports).to include(report_1)
+        expect(user_reports).to include(report_2)
+        expect(user_reports).to_not include(report_3)
+      end
+    end
   end
 end
