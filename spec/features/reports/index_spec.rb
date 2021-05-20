@@ -52,19 +52,6 @@ describe 'Reports Index' do
     expect(current_path).to eq(report_path(@report_2))
 
     expect(page).to have_css('.report', count: 1)
-    
-    expect(page).to have_content(@item_2.name)
-    expect(page).to have_content(@report_2.average_price)
-    expect(page).to have_content(@item_2.description)
-    expect(page).to have_content(@item_2.unit_price)
-    expect(page).to have_content(@item_2.merchant_id)
-
-    # should not have 
-    expect(page).to_not have_content(@item_1.name)
-    expect(page).to_not have_content(@report_1.average_price)
-    expect(page).to_not have_content(@item_1.description)
-    expect(page).to_not have_content(@item_1.unit_price)
-    expect(page).to_not have_content(@item_1.merchant_id)
   end
 
   it 'has a link back to dashboard' do 
