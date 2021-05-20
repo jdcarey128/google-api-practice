@@ -51,5 +51,6 @@ describe 'Google Sheets Report' do
       click_link 'Return to Dashboard' 
       expect(current_path).to eq(dashboard_path)
     end
+
   end
 end

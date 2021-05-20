@@ -21,6 +21,13 @@ describe 'Dashboard', type: :feature do
       name = stub_omniauth['info']['first_name']
       expect(page).to have_content("Hello, #{name}!")
     end
+
+    it 'displays a link to the user\s reports' do 
+      within '.user-reports' do 
+        click_link 'User Reports'
+        expect(current_path).to eq(reports_path)
+      end
+    end
   end
 
   describe 'when not logged in with Google Oauth' do 

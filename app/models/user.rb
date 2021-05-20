@@ -2,6 +2,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true 
   validates_presence_of :first_name, :last_name
 
+  has_many :reports
+
   class << self 
     def from_google_omniauth(omniauth_data)
       user_info = omniauth_data['info']

@@ -1,0 +1,38 @@
+<h1><%= current_user.first_name %>'s Reports</h1>
+
+<%= link_to 'Return to Dashboard', dashboard_path %>
+
+<div class="reports">
+  <% @reports.each do |report| %>
+    <div class="report-summary">
+      <h3><%= link_to "Report: #{report.id}", report_path(report) %></h3>
+      <p><strong>Average Unit Price: </strong><%= number_to_currency(report.average_price.round(2)) %></p>
+    </div>
+    <div class="report" id="report-<%= report.id %>">
+      <table>
+        <thead>
+          <th>ID</th>
+          <th>School Name</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Unit Price</th>
+          <th>Merchant ID</th>
+          <th>Created At</th>
+        </thead>
+        <tbody>
+          <% report.items.each do |item| %>
+            <tr class='item'>
+              <td><%= item.id %></td>
+              <td><%= item.school %></td>
+              <td><%= item.name %></td>
+              <td><%= item.description %></td>
+              <td><%= item.unit_price %></td>
+              <td><%= item.merchant_id %></td>
+              <td><%= item.created_at %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
