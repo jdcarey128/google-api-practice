@@ -2,6 +2,10 @@
 <h1>Hello, <%= @user.first_name %>!</h1>
 </div>
 
+<div class="user-reports">
+  <%= link_to 'User Reports', reports_path %>
+</div>
+
 <div>
 <%= link_to('Log out', '/logout') %>
 </div>
