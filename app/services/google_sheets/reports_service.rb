@@ -24,6 +24,29 @@ module GoogleSheets
           }
         end
       end
+
+      def create_sheet(token, report)
+        session = GoogleDrive::Session.from_access_token(token)
+
+        # Creates the master spreadsheet
+        spreadsheet = session.create_spreadsheet("Master report created: #{report.created_at}")
+        worksheet = spreadsheet.worksheets[0]
+
+        # inserts row values 
+        headers = report.items.first.attributes.keys
+        worksheet.insert_rows(1, [["Average Unit Price", report.average_price]])
+        worksheet.insert_rows(3, [headers])
+
+        report.items.each do |item|
+          values = item.attributes.values
+          # values need to be strings so size is defined 
+          values = values.map(&:to_s)
+          worksheet.insert_rows(worksheet.num_rows + 1, [values])
+        end
+        
+        # commits inserted row changes
+        worksheet.save
+      end
     end
   end
 end 
