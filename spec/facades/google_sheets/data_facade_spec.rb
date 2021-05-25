@@ -11,6 +11,7 @@ describe 'Google Sheets Data Facade' do
       open_struct_data = create_open_struct(response_data)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       allow(GoogleSheets::ReportsService).to receive(:fetch_sheet_data).with(token, 10).and_return(open_struct_data)
+      allow(GoogleSheets::ReportsService).to receive(:create_sheet).and_return(nil)
       
       result = GoogleSheets::ReportsFacade.fetch_sheet_data(token, 10, user.id)
 

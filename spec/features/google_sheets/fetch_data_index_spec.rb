@@ -12,6 +12,7 @@ describe 'Google Sheets Report' do
       # this creates the open struct object that occurs in data service
       open_struct_data = create_open_struct(response_data[:results])
       allow(GoogleSheets::ReportsService).to receive(:fetch_sheet_data).with(@token, 4).and_return(open_struct_data)
+      allow(GoogleSheets::ReportsService).to receive(:create_sheet).and_return(nil)
       
       within '.record-count-form' do 
         fill_in :record_count, with: 4

@@ -41,7 +41,6 @@ describe 'Report Show' do
     expect(page).to_not have_content(@item_1.name)
     expect(page).to_not have_content(@report_1.average_price)
     expect(page).to_not have_content(@item_1.description)
-    expect(page).to_not have_content(@item_1.unit_price)
   end
 
   it 'has a link to return to the reports index page' do 
